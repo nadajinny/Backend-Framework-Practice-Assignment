@@ -120,6 +120,4 @@ java -jar build/libs/board-0.0.1-SNAPSHOT.jar
 | 다양한 HTTP Status Code 사용 (2xx/4xx/5xx) | ✅ |
 | 표준 응답 포맷 사용 | ✅ |
 | GitHub 코드 제출 | ✅ |
-| Postman 캡처 첨부 | ⬜ 필요 시 이미지 삽입 |
-
-필요한 경우 위 표에 Postman 캡처를 추가했다는 표기를 업데이트하고 제출하면 됩니다.
+| Postman 캡처 첨부 | ✅ |
