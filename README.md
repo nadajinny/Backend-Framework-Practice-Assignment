@@ -68,6 +68,8 @@ src/
 | 7 | DELETE | `/api/v1/boards/{id}` | 단일 게시글 삭제 | `204 No Content`, `404 Not Found` |
 | 8 | DELETE | `/api/v1/boards` | 전체 삭제 (의도적 서버 오류 테스트) | `500 Internal Server Error` |
 
+> ⚠️ `DELETE /api/v1/boards` 전체 삭제 엔드포인트는 고의적으로 서버 오류(`500 Internal Server Error`)를 발생시켜 5xx 시나리오를 검증하도록 설계되었습니다. 아래 첨부한 `DELETE_전체삭제.png`에서도 확인할 수 있듯이, 오류 응답이 곧 정상 동작입니다.
+
 ## 🧪 HTTP Status Code 요약
 | 분류 | 예시 |
 |------|------|
@@ -75,17 +77,27 @@ src/
 | 4xx | `400 Bad Request`, `404 Not Found` |
 | 5xx | `500 Internal Server Error` (전체 삭제 엔드포인트에서 고의 발생) |
 
-## 📸 Postman 테스트 캡처 가이드
-- `POST /api/v1/boards` – 게시글 생성
-- `POST /api/v1/boards/with-header` – 헤더 포함 생성
-- `GET /api/v1/boards` – 전체 조회
-- `GET /api/v1/boards/{id}` – 단일 조회
-- `PUT /api/v1/boards/{id}` – 전체 수정
-- `PUT /api/v1/boards/{id}/title` – 제목만 수정
-- `DELETE /api/v1/boards/{id}` – 단일 삭제
-- `DELETE /api/v1/boards` – 전체 삭제(500)
+## 📸 Postman 테스트 캡처
+프로젝트 루트의 `image/` 디렉터리에 모든 API 호출 캡처를 추가했고, 아래에 바로 확인할 수 있도록 삽입했습니다.
 
-위 순서대로 Postman 캡처 이미지를 README 하단이나 과제 제출 문서에 추가하면 요구 사항을 완성할 수 있습니다.
+1. `POST /api/v1/boards` – 게시글 생성  
+   ![POST 게시글 생성](image/POST_게시글생성.png)
+2. `POST /api/v1/boards/with-header` – 헤더 포함 생성  
+   ![POST 헤더 포함 생성](image/POST_Header포함게시글생성.png)
+3. `GET /api/v1/boards` – 전체 조회  
+   ![GET 전체 조회](image/GET_전체조회.png)
+4. `GET /api/v1/boards/{id}` – 단일 조회  
+   ![GET 단일 조회](image/GET_단일조회.png)
+5. `PUT /api/v1/boards/{id}` – 제목/내용 전체 수정  
+   ![PUT 전체 수정](image/PUT_전체수정.png)
+6. `PUT /api/v1/boards/{id}/title` – 제목만 수정  
+   ![PUT 제목만 수정](image/PUT_제목만수정.png)
+7. `DELETE /api/v1/boards/{id}` – 단일 삭제  
+   ![DELETE 단일 삭제](image/DELETE_단일삭제.png)
+8. `DELETE /api/v1/boards` – 전체 삭제(고의 500 오류)  
+   ![DELETE 전체 삭제](image/DELETE_전체삭제.png)
+
+8번 캡처에서는 요구 조건 충족을 위해 고의로 서버 오류를 발생시킨 모습이 나타나며, 이는 정상 동작입니다.
 
 ## ▶️ 실행 방법
 ```bash
